@@ -14,6 +14,11 @@ html {
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background-color: var(--theme-bg-page);
+  min-height: 100vh; 
+  background: var(--theme-bg-page);
   color: var(--theme-text-main);
+}
+
+.page-see-more {
+  background: radial-gradient(circle, var(--theme-bg-center) 0%, var(--theme-bg-edge) 100%);
 }

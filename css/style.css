@@ -1,119 +1,169 @@
-/* style.css */
-
-
-/* 1. RESET BÁSICO */
+@charset "UTF-8";
+/* main.scss */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  color-scheme: Dark Light;
 }
 
 body {
-    font-family: sans-serif;
-    background-color: #000000;
-    color: white;
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  min-height: 100vh;
+  background: var(--theme-bg-page);
+  color: var(--theme-text-main);
 }
 
-/* 2. OBJETOS (Layout) */
+.page-see-more {
+  background: radial-gradient(circle, var(--theme-bg-center) 0%, var(--theme-bg-edge) 100%);
+}
+
+:root {
+  --brand-base: #ff0000;
+  --theme-bg-page: hsl(from var(--brand-base) h s 98%);
+  --theme-bg-elevated: hsl(from var(--brand-base) h s 100%);
+  --theme-text-main: hsl(from var(--brand-base) h s 10%);
+  --theme-text-muted-light: hsl(from var(--brand-base) h s 90%);
+  --theme-text-muted-dark: hsl(from var(--brand-base) h s 60%);
+}
+
+html[data-theme=Blanco] {
+  --theme-bg-page: hsl(from var(--brand-base) h s 98%);
+  --theme-bg-elevated: hsl(from var(--brand-base) h s 100%);
+  --theme-text-main: hsl(from var(--brand-base) h s 10%);
+  --theme-text-muted-light: hsl(from var(--brand-base) h s 90%);
+  --theme-text-muted-dark: hsl(from var(--brand-base) h s 60%);
+}
+
+html[data-theme=Negro] {
+  --theme-bg-page: hsl(from var(--brand-base) h s 5%);
+  --theme-bg-elevated: hsl(from var(--brand-base) h s 10%);
+  --theme-text-main: hsl(from var(--brand-base) h s 95%);
+  --theme-text-muted-light: hsl(from var(--brand-base) h s 20%);
+  --theme-text-muted-dark: hsl(from var(--brand-base) h s 45%);
+}
+
+:root {
+  --brand-base-bg: rgb(0, 13, 255);
+  --theme-bg-center: hsl(from var(--brand-base-bg) h s 75%);
+  --theme-bg-edge: hsl(from var(--brand-base-bg) h s 0%);
+}
+
+html[data-theme-bg=Blanco] {
+  --theme-bg-center: hsl(from var(--brand-base-bg) h s 75%);
+  --theme-bg-edge: hsl(from var(--brand-base-bg) h s 0%) ;
+}
+
+html[data-theme-bg=Negro] {
+  --theme-bg-center: hsl(from var(--brand-base-bg) h s 0%);
+  --theme-bg-edge: hsl(from var(--brand-base-bg) h s 75%) ;
+}
+
+.c-header {
+  background-color: var(--theme-bg-elevated);
+  color: var(--theme-text-main);
+}
+
 .o-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .o-grid {
-    display: grid;
-    /* Esto asegura que las columnas midan mínimo 250px y se ajusten */
-    grid-template-columns: repeat(auto-fill, minmax(250px, 2fr));
-    gap: 20px;
-    width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
 }
 
-/* 3. COMPONENTES */
-
-/* --- Filtros --- */
 .c-filter {
-    background-color: #000000;
-    padding: 15px;
-    display: flex; /* Para poner los botones uno al lado del otro */
-    gap: 10px;
-    margin-bottom: 20px;
+  background-color: var(--filter-bg);
+  padding: 15px;
 }
-
 .c-filter__btn {
-    border-radius: 100px;
-    padding: 10px 20px; /* Mejor usar padding que width fijo */
-    cursor: pointer;
-    background-color: #333; /* Un gris base */
-    color: white;
-    border: 1px solid #444;
+  border-radius: 1px;
+  width: 120px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: var(--theme-text-muted-light);
+  color: var(--theme-text-main);
 }
-
-/* Modificador Activo (Debe ir debajo del botón normal) */
 .c-filter__btn--active {
-    background-color: #3498db;
-    border-color: #3498db;
-    font-weight: bold;
+  cursor: pointer;
+  background-color: var(--theme-text-muted-dark);
 }
 
-/* --- Tarjeta (Card) --- */
+button {
+  border: none;
+  border-radius: var(--btn-radius);
+  font-size: var(--btn-font-size);
+  font-weight: 600;
+  color: var(--theme-text-main);
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
 .c-card {
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    color: #2c3e50; /* Texto oscuro para el fondo blanco */
-    height: 100%; /* Para que todas las tarjetas de la fila midan lo mismo */
+  --bg: var(--theme-bg-elevated);
+  --border-color: transparent;
+  --text-color: var(--theme-text-main);
+  background: var(--bg);
+  border: 2px solid var(--border-color);
+  padding: 15px;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
-
-/* Modificador Featured (Joyería) */
-/* IMPORTANTE: Esto debe ir separado en CSS puro */
-.c-card--featured {
-    border: 3px solid gold;
-    background-color: #fffdf0;
-    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
-}
-
 .c-card__image {
-    width: 100%;
-    height: 150px;
-    object-fit: contain;
-    margin-bottom: 15px;
+  height: 150px;
+  object-fit: contain;
+  margin-bottom: 15px;
+  width: 100%;
 }
-
-.c-card__body {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* Empuja el contenido para llenar el espacio */
+.c-card__link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 }
-
 .c-card__title {
-    font-size: 1rem;
-    margin-bottom: 10px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  font-size: 1rem;
+  /* Obliga a que el texto sea una sola línea */
+  white-space: nowrap;
+  /* Oculta lo que se salga del contenedor */
+  overflow: hidden;
+  /* Pone los "..." automáticamente al final */
+  text-overflow: ellipsis;
+  /* Asegúrate de que tenga un ancho máximo o el ancho del padre */
+  max-width: 100%;
 }
-
-.c-card__price {
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-}
-
 .c-card__btn {
-    background: #3498db;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 4px;
-    margin-top: auto; /* Truco para enviar el botón siempre al fondo */
-    width: 100%;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  background-color: var(--theme-text-muted-light);
+  position: relative;
+  z-index: 2;
+}
+.c-card__btn--buy:hover {
+  background: var(--theme-text-muted-dark);
+}
+.c-card {
+  /* Usamos '&' para pegar '--featured' a '.c-card' */
+}
+.c-card--featured {
+  background: var(--bg);
+  --border-color: gold;
+  /*una sombra dorada para resaltar más */
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.3);
 }
 
-.c-card__btn:hover {
-    background: #2c3e50;
-}
-
+/*# sourceMappingURL=style.css.map */

@@ -15,6 +15,7 @@
   border-radius: 3px;
   display: flex;
   flex-direction: column;
+  position: relative;
   // color: c.$color-accent; Aca usamos variable de SCSS para cambiar los colores de la letra en las Card
 
   &__image {
@@ -22,6 +23,12 @@
     object-fit: contain;
     margin-bottom: 15px;
     width: 100%;
+  }
+
+  &__link{
+    position: absolute;
+    inset: 0;
+    z-index: 1;
   }
 
   // Ejercicio, Agregamos estilos a la carta para que el nombre no sobrepase la carta
@@ -40,13 +47,17 @@
   }
 
   &__btn {
-    background: var(--theme-bg-primary);
     border: none;
     padding: 10px;
     cursor: pointer;
+    background-color: var(--theme-text-muted-light);
+    position: relative;
+    z-index: 2; // Más alto que el link, para que no lo tape
+
 
     &--buy:hover {
-      background: var(--theme-background-btn);
+      background: var(--theme-text-muted-dark);
+
     }
   }
 
@@ -56,7 +67,6 @@
   &--featured {
     background: var(--bg);
     --border-color: gold;
-    --text-color: #323232;
     /*una sombra dorada para resaltar más */
     box-shadow: 0 4px 5px rgb(0 0 0 / 30%);
 }

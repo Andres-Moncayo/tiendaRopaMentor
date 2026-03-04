@@ -1,91 +1,23 @@
 
+// app.js
 
-
-
-// 1. URL de la API (Fake Store API)
 const API_URL = 'https://fakestoreapi.com/products?limit=8';
-let AllProducts = [];
-let Allfiltered = []; 
+let todosProductos = [];
+let todosFiltrados = []; 
 
-// 2. Función para obtener los datos
-async function getProducts() {
-    try {
-        const response = await fetch(API_URL);
-        AllProducts = await response.json();
 
-        Allfiltered = AllProducts;
-        renderProducts(AllProducts);
-        setupFilters();
-    } catch (error) {
+// Obtener datos
+async function obtenerProductos() {
+    try{
+        const respuesta = await fetch(API_URL);
+        todosProductos = await respuesta.json();
+        imprimirProductos(todosProductos);
+        renderProductos();
+    }catch(error) {
         console.error("Error cargando productos:", error);
     }
-}
-
-
-
-
-
-
-
-
-
-
-// Configuracion Theming
-
-const root = document.documentElement; // Defino Root como el Html
-const themeToggleBtn = document.getElementById("theme-toggle");
-
-function getCurrentTheme() { // Obtener el tema actual
-  return root.getAttribute('data-theme') || 'Auto';
-}
-
-function setTheme(theme){  // Establecer la palabra del tema actual
-    root.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-    if (themeToggleBtn){
-        themeToggleBtn.textContent = `Tema: ${theme}`;
-    }
-}
-
-
-function applySavedTheme(){ // Guardar
-    const saved = localStorage.getItem('theme');
-    if (saved === 'Light' || saved === 'Dark' || saved === 'Auto'){
-        setTheme(saved);
-    }
-}
-
-
-if (themeToggleBtn) {
-  themeToggleBtn.addEventListener('click', () => {
-    const current = getCurrentTheme();
-    let next;
-    if (current === 'Auto') next = 'Dark';
-    else if (current === 'Dark') next = 'Light';
-    else next = 'Auto';
-
-    setTheme(next);
     
-  });
 }
-
-applySavedTheme();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -94,70 +26,141 @@ applySavedTheme();
 
 
 // Ejercicio botones cambian de color al dar click y imprimir los de la categoria correspondiente
-function setupFilters(){
-  const filterButtons = document.querySelectorAll(".c-filter__btn[data-category]");
+function renderProductos(){
+    const filtradoBotones = document.querySelectorAll(".c-filter__btn[data-category]");
 
-  filterButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      // 1. Estado visual
-      filterButtons.forEach(b => b.classList.remove("c-filter__btn--active"));
-      btn.classList.add("c-filter__btn--active");
+    filtradoBotones.forEach(btn =>{
+        btn.addEventListener("click",()=>{
+            filtradoBotones.forEach(b=>b.classList.remove("c-filter__btn--active"))
+            btn.classList.add("c-filter__btn--active");
+            
+            const categoria = btn.getAttribute("data-category");
+            
 
-      // 2. Filtrado
-      const category = btn.getAttribute("data-category");
+            if (categoria === "all"){
+                todosFiltrados = todosProductos;
+                console.log("prueba"+todosProductos)
+                
+            }else{
+                todosFiltrados = todosProductos.filter(p => p.category === categoria);
+            }
 
-      if (category === "all") {
-        Allfiltered = AllProducts
-      } else {
-        Allfiltered = AllProducts.filter(p => p.category === category); // solo esa categoría
-      }
+            imprimirProductos(todosFiltrados);
+        })
 
-      renderProducts(Allfiltered);
+    })
+
+};
+
+
+
+
+
+
+
+
+
+// Ejercicio Configuracion Theming
+
+const root = document.documentElement; 
+const temaPalancaBtn = document.getElementById("theme-toggle");
+
+function obtenerTemaActual(){
+    return root.getAttribute('data-theme') || 'Auto';
+}
+
+function establecerTema(tema){
+    root.setAttribute('data-theme', tema)
+    localStorage.setItem('Tema', tema)
+    if (temaPalancaBtn){
+        temaPalancaBtn.textContent = `Tema: ${tema}`
+
+    }
+}
+
+function aplicarTema(){
+    const guardado = localStorage.getItem('tema');
+    console.log("HOLA +" +guardado)
+    if (guardado === "Blanco" || guardado === "Negro" || guardado == "Auto"){
+        establecerTema(guardado)
+    }
+
+}
+
+if(temaPalancaBtn){
+    temaPalancaBtn.addEventListener('click', ()=>{
+        const actual = obtenerTemaActual();
+        let siguiente;
+        if (actual == 'Auto') siguiente = 'Negro';
+        else if (actual === 'Negro') siguiente = 'Blanco';
+        else siguiente = 'Auto';
+        establecerTema(siguiente);
     });
-  });
 }
 
 
-
-// 3. Función para pintar los productos en el HTML
-function renderProducts(products) {
-    
-    const grid = document.getElementById('product-grid');
-    grid.innerHTML = ''; // Limpiar el contenedor
-
-    products.forEach(product => {
-
-        // Ejercicio,
-        // Lógica para cortar el título
-        // const shortTitle = product.title.length > 15 
-            //? product.title.substring(0, 15) + '...' 
-            //: product.title;
+aplicarTema();
 
 
-        // Ejercicio, Si la categoria es Joyeria aplicar un estilo diferente
+
+
+
+
+
+
+
+
+
+
+
+async function imprimirProductos(todosProductos){
+    const contenedor = document.getElementById("contenedorRopa");
+    contenedor.innerHTML = "";
+
+
+    todosProductos.forEach(producto => {
         let claseExtra = "";
 
-        if (product.category === "jewelery"){
+        if (producto.category === "jewelery"){
             claseExtra = 'c-card--featured';
         }
 
-
-        // Creamos la estructura usando tus clases de la capa COMPONENTS
-        const productHTML = `
+        const productoHTML = `
             <div class=" c-card ${claseExtra}">
-                <img src="${product.image}" alt="${product.title}" class="c-card__image">
+                <a href="detalle.html" class="c-card__link"></a>
+                <img src="${producto.image}" alt="${producto.title}" class="c-card__image">
                 <div class="c-card__body">
-                    <h2 class="c-card__title">${product.title}</h2>
-                    <p class="c-card__price">$${product.price}</p>
+                    <h2 class="c-card__title">${producto.title}</h2>
+                    <p class="c-card__price">$${producto.price}</p>
                     <button class="c-card__btn c-card__btn--buy">
                         Agregar al carrito
                     </button>
                 </div>
             </div>
         `;
-        grid.innerHTML += productHTML;
+        contenedor.innerHTML += productoHTML;
+        
     });
 }
 
-// Ejecutar la función al cargar la página
-getProducts();
+
+
+
+
+// Click a Agregar Carrito
+const agregarCarritoBtns = document.querySelectorAll(".c-card__btn--buy");
+
+agregarCarritoBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        console.log("Producto agregado al carrito");
+    });
+});
+
+
+
+
+
+obtenerProductos();
+
+
+

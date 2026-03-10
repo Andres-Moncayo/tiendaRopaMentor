@@ -7,15 +7,26 @@
   // Guardamos la semilla en una variable CSS
   --brand-base: #{$color-primary};
 
-
-  --theme-bg-page: hsl(from var(--brand-base) h s 98%);
-  --theme-bg-elevated: hsl(from var(--brand-base) h s 100%); // Blanco Puro 
+  --theme-bg-page: hsl(from var(--brand-base) h s 98%); // Color fondo
+  --theme-bg-elevated: hsl(from var(--brand-base) h s 100%); // Blanco Puro Cartas
 
 
   --theme-text-main: hsl(from var(--brand-base) h s 10%); // Color Letra
-  --theme-text-muted-light: hsl(from var(--brand-base) h s 90%); // Color Claro En Base al primario Para: Background-Btn, Hover-Btn
 
-  --theme-text-muted-dark: hsl(from var(--brand-base) h s 60%); // Color Oscuro En Base al primario Para:  Background-Btn Hover-Btn
+  // Btn
+  --theme-text-muted-light: hsl(from var(--brand-base) h s 90%); // Color Btn
+  --theme-text-muted-dark: hsl(from var(--brand-base) h s 60%); // Hover-Btn
+
+  // Carrito
+  --theme-btn-cart-dark: hsl(from var(--brand-base) h s 30%); // Color Btn Cart
+  --theme-btn-cart-hover-dark: hsl(from var(--brand-base) h s 20%); // Color Hover Btn Cart
+  --theme-txt-cart-main: hsl(from var(--brand-base) h s 10%); // Color Letra Btn Cart
+
+  // Modal Cart
+  --theme-cart-muted-light: hsl(from var(--brand-base) h s 90%); // Color Claro En Base al primario Para: Background-Btn, Hover-Btn
+  --theme-items-muted-light: hsl(from var(--brand-base) h s 87%); // Color un poco mas CLaro para Seperar los items dentro del modal
+
+
 }
 
 
@@ -26,9 +37,22 @@ html[data-theme='Blanco'] {
   --theme-bg-elevated: hsl(from var(--brand-base) h s 100%);
 
   --theme-text-main: hsl(from var(--brand-base) h s 10%); // Color Letra Blanco
-  --theme-text-muted-light: hsl(from var(--brand-base) h s 90%); // Color En Base al primario Para: Letra, Background-Btn
 
-  --theme-text-muted-dark: hsl(from var(--brand-base) h s 60%); // Color Oscuro En Base al primario Para:  Background-Btn Hover-Btn
+  // Btn
+  --theme-text-muted-light: hsl(from var(--brand-base) h s 90%); // Color En Base al primario Para: Letra, Background-Btn
+  --theme-text-muted-dark: hsl(from var(--brand-base) h s 60%); // Color Oscuro En Base al primario Para: Hover-Btn
+
+  // Carrito Btn
+  --theme-btn-cart-hover-dark: hsl(from var(--brand-base) h s 20%); // Color Hover Btn Cart
+  --theme-txt-cart-main: hsl(from var(--brand-base) h s 10%);
+
+  // Modal Cart
+  --theme-cart-muted-light: hsl(from var(--brand-base) h s 90%); // Color Claro En Base al primario Para: Background-Btn, Hover-Btn
+  --theme-items-muted-light: hsl(from var(--brand-base) h s 87%); // Color un poco mas CLaro para Seperar los items dentro del modal
+
+  // Modal Select y Btn Comprar
+  --theme-text-muted-light: hsl(from var(--brand-base) h s 90%); // Background-Btn
+  --theme-text-muted-dark: hsl(from var(--brand-base) h s 60%); // Color Oscuro En Base al primario Para: Hover-Btn
 
   }
 
@@ -38,9 +62,20 @@ html[data-theme='Negro'] {
   --theme-bg-elevated: hsl(from var(--brand-base) h s 10%);
 
   --theme-text-main: hsl(from var(--brand-base) h s 95%); // Color Letra Negro
-  --theme-text-muted-light: hsl(from var(--brand-base) h s 20%); // Color En Base al primario Para: Letra, Background-Btn
 
+  // Btn
+  --theme-text-muted-light: hsl(from var(--brand-base) h s 20%); // Color En Base al primario Para: Letra, Background-Btn
   --theme-text-muted-dark: hsl(from var(--brand-base) h s 45%); // Color Oscuro En Base al primario Para:  Background-Btn Hover-Btn
+
+  // Carrito
+  --theme-btn-cart-dark: hsl(from var(--brand-base) h s 30%); // Color Btn Cart
+  --theme-btn-cart-hover-dark: hsl(from var(--brand-base) h s 20%); // Color Hover Btn Cart
+  --theme-txt-cart-main: hsl(from var(--brand-base) h s 10%);
+
+  // Modal Cart
+  --theme-cart-muted-light: hsl(from var(--brand-base) h s 87%); // Color Claro En Base al primario Para: Background-Btn, Hover-Btn
+  --theme-items-muted-light: hsl(from var(--brand-base) h s 90%); // Color un poco mas CLaro para Seperar los items dentro del modal
+
   }
 
 

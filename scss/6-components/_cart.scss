@@ -1,0 +1,43 @@
+@use "../1-settings/colors" as *;
+@use "../3-generic/theming" as *;
+
+.cartStyle {
+  position: fixed; // Hacer flexible el contenedor
+  left: 1.5em; // abajo a la izquierda
+  bottom: 1.5rem;
+  z-index: 1000; // Posicion encima de todo se puede usar solo si la posicion es diferente a static
+
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+
+  background-color: var(--theme-text-muted-dark); // Fondo Boton Carrito
+  color: var(theme-txt-cart-main); // Color Letra Boton Carrito
+
+  display: flex;
+  align-items: center; // Alinear Verticalmente
+  justify-content: center; // Alinear Horizontalmente
+
+  cursor: pointer;
+
+
+  &__btn {
+    background-color: transparent; 
+    border: none;
+    color: $color-white;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &:hover {
+    background-color: var(--theme-btn-cart-hover-dark); // Hover Boton Carrito
+    transform: translateY(-2px);
+    
+  }
+
+}

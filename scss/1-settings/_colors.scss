@@ -1,6 +1,8 @@
 
 
 // Este es tu color "Semilla". Puede ser Hexadecimal, CSS lo convertirá a HSL por detrás.
-$color-primary: #ff0000; // Color Principal 
+$color-primary: #000000;
 $color-background: rgb(0, 13, 255);
-
+$cart-bg-color: $color-primary;
+$color-white: #ffffff;
+$color-red: #ff0000; // Botones, para Cerrar, para quitar

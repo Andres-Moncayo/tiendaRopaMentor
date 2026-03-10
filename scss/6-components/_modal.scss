@@ -1,0 +1,163 @@
+@use "../1-settings/colors" as *;
+@use "../3-generic/theming" as *;
+
+/* Contenedor principal del modal */
+.modal {
+  display: none; // El modal empieza oculto, JS luego lo cambia a block para mostrarlo
+  position: fixed; // Fija el modal a la pantalla (no se mueve con el scroll)
+  inset: 0; // Hace que el modal ocupe toda la pantalla
+  z-index: 2000; // Lo pone por encima de otros elementos como el carrito
+  
+
+  /* Fondo oscuro detrás del modal */
+  &__overlay {
+    position: fixed; // También se fija a la pantalla
+    inset: 0; // Ocupa toda la pantalla
+    background-color: rgba(0, 0, 0, 0.6); // Fondo negro con transparencia
+    display: flex; // Usamos flex para centrar el contenido
+    align-items: center; // Centra verticalmente
+    justify-content: center; // Centra horizontalmente
+  }
+
+  /* Caja blanca donde va el contenido del modal */
+  &__content {
+    background: var(--theme-bg-page);
+    padding: 1.5em;
+    border-radius: 8px;
+    max-width: 700px; // Ancho máximo del modal
+    width: 100%; // En pantallas pequeñas ocupa el 90% del ancho
+    max-height: 90vh; // Limita la altura del modal
+    display: flex; // Permite que el body sea Area scrollable
+    flex-direction: column;
+  }
+
+
+  &__btn{
+    border: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--theme-text-muted-light); 
+    color: var(--theme-text-main);
+
+    &:hover{
+    background-color: var(--theme-text-muted-dark);
+
+    
+  }
+  }
+
+  /* Encabezado del modal */
+  &__header {
+    display: flex; // Coloca los elementos en una fila
+    justify-content: space-between; // Separa el titulo y la X a los extremos
+    align-items: center; // Los alinea verticalmente
+  } 
+
+  /* Boton cerrar */
+  &__close {
+    background-color: transparent;
+    color: $color-red;
+    border: none; // Sin borde
+    font-size: 1.2rem; // Tamaño de la X
+    cursor: pointer; // Cambia el cursor al pasar el mouse
+  }
+
+  &__body{
+    background-color: var(--theme-bg-elevated);
+    flex: 1; // Ocupa el espacio disponible bajo el header
+    min-height: 0; // Necesario para que flex permita scroll interno
+    overflow-y: auto; // Scroll vertical cuando hay muchos productos
+    border-radius: 8px;
+    
+
+  }
+
+  &__img{
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+    object-fit: contain; // Mantiene proporción sin deformar
+    display: block;
+
+  }
+
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 2px solid var(--theme-bg-page);
+    padding: 1.5em 1em;
+    border-radius: 6px;
+
+  }
+
+  &__item-info{
+    flex: 1; // Esta columna ocupa todo el espacio disponible entre imagen y cantidad
+  }
+
+  &__amount{
+      display: flex;
+      flex-direction: column;
+      margin-left: 1.5em;
+      min-width: 140px; // ancho fijo para que todas las columnas de cantidad se alineen
+
+  }
+
+  &__select{
+    background-color: var(--theme-text-muted-light); 
+    color: var(--theme-text-main);
+    border-radius: 8px;
+    border: none;
+    padding: 5px; 
+    font-size: 15px;
+    cursor: pointer;
+
+  }
+
+
+
+
+  &__total{
+    margin-top: 1rem;
+}
+
+  &__removeProduct{
+    background-color: $color-red;
+    color: $color-white;
+    border: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: 500;
+    display: inline-flex; // Para poder alinear items
+    align-items: center; // Centramos el contenido
+    height: 1em;
+  }
+
+  // Ajustes para pantallas pequeñas
+  @media (max-width: 480px) {
+    &__item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    &__amount {
+      margin-left: 0;
+      min-width: 0;
+      width: 100%;
+    }
+
+    &__item-info {
+      width: 100%;
+    }
+  }
+}
+
+
+
+

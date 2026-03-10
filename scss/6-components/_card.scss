@@ -19,7 +19,7 @@
   // color: c.$color-accent; Aca usamos variable de SCSS para cambiar los colores de la letra en las Card
 
   &__image {
-    height: 150px;
+    height: 180px;
     object-fit: contain;
     margin-bottom: 15px;
     width: 100%;
@@ -53,6 +53,7 @@
     background-color: var(--theme-text-muted-light);
     position: relative;
     z-index: 2; // Más alto que el link, para que no lo tape
+    margin-top: 15px;
 
 
     &--buy:hover {
